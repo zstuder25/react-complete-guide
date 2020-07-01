@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 // import Radium, { StyleRoot } from "radium";
 // import styled from "styled-components";
-import './App.css';
+// import './App.css';
+import classes from './App.css' //CSS modules
 import Person from "./Person/Person";
 
 // const StyledButton = styled.button`
@@ -69,6 +70,8 @@ class App extends Component {
     //   }
     // };
 
+    let btnClasses = '';
+
     let persons = null;
     if(this.state.showPersons){
       persons =
@@ -89,24 +92,26 @@ class App extends Component {
       //   backgroundColor: 'salmon',
       //     color: 'black'
       // }
+      btnClasses = classes.Red
     }
 
-    const classes = [];
+    const assignedClasses = [];
     if(this.state.persons.length <= 2 ){
-      classes.push('red')
+      assignedClasses.push(classes.red)
     }
     if(this.state.persons.length <= 1 ){
-      classes.push('bold')
+      assignedClasses.push(classes.bold)
     }
 
 
     return (
       // <StyleRoot> // Radium styling for media queries
-        <div className="App">
+        <div className={classes.App}>
           <h1>Hi I'm a react app</h1>
-          <p className={classes.join(' ')}>This is really working</p>
+          <p className={assignedClasses.join(' ')}>This is really working</p>
           <button
             // alt={this.state.showPersons} // For Styled Components
+            className={btnClasses}
             onClick={this.togglePersonsHandler}>
             Toggle Persons
           </button>
